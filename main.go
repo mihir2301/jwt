@@ -14,4 +14,5 @@ func main() {
 	r.HandleFunc("/refresh", Refresh).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
+	// run with go run .
 }
