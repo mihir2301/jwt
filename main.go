@@ -3,13 +3,15 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/login", Login).Methods("POST")
+	r.HandleFunc("/home", Home).Methods("GET")
+	r.HandleFunc("/refresh", Refresh).Methods("GET")
 
-	http.HandleFunc("/login", Login)
-	http.HandleFunc("/home", Home)
-	http.HandleFunc("/refresh", Refresh)
-
-	log.Fatal(http.ListenAndServe(":3000", nil))
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
